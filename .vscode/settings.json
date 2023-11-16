@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "MMC.sln"
+    "dotnet.defaultSolution": "Metroid and the Mysterious Chamber.sln"
 }
