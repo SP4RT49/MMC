@@ -15,6 +15,14 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateText(string promptMessage)
     {
-        promptText.text = promptMessage;
+        if (promptText != null)
+        {
+            promptText.text = promptMessage;
+        }
+        else
+        {
+            promptText.text = "";
+            Debug.LogError("Le champ 'promptText' n'est pas assigné dans l'inspecteur Unity.");
+        }
     }
 }
