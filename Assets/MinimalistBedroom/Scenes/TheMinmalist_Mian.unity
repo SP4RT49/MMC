@@ -9292,16 +9292,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 219933118725785042, guid: a89e4f36448f9d147940c587cbc7b3f1,
-        type: 3}
-      propertyPath: xSensivitity
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 219933118725785042, guid: a89e4f36448f9d147940c587cbc7b3f1,
-        type: 3}
-      propertyPath: ySensivitity
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 884881934800682785, guid: a89e4f36448f9d147940c587cbc7b3f1,
         type: 3}
       propertyPath: promptText
