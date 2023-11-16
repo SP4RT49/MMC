@@ -10,6 +10,13 @@ public class PlayerLook : MonoBehaviour
     public float xSensivitity = 30f;
     public float ySensivitity = 30f;
 
+    void Start()
+    {
+        // Cacher et verrouiller le curseur au centre de l'écran
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     public void ProcessLook(Vector2 input)
     {
         float mouseX = input.x;

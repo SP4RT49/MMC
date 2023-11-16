@@ -4,6 +4,7 @@ public class GunScript : MonoBehaviour
 {
     public Transform firePoint; // Endroit où le projectile sera instancié
     public GameObject bullet; // Référence au prefab de la balle
+    public AudioSource shootSound;
 
     void Update()
     {
@@ -19,5 +20,6 @@ public class GunScript : MonoBehaviour
 
         // Instancier le projectile
         Instantiate(bullet, firePoint.position, firePoint.rotation);
+        shootSound.Play(); // Joue le son de tir
     }
 }
