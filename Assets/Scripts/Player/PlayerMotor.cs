@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerMotor : MonoBehaviour
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
     public float health = 100f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,11 +110,17 @@ public class PlayerMotor : MonoBehaviour
 
     void Die()
     {
-        walkSpeed = 0f;
-        sprintSpeed = 0f;
-        crouchSpeed = 0f;
-        speed = 0f;
         // Logique de mort du joueur (par exemple, jouer une animation, terminer le jeu, etc.)
         Debug.Log("Le joueur est mort");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        LoadScene();
+
+    }
+
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(2);
     }
 }

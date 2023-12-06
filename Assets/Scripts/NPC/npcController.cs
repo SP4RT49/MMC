@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class NPCController : MonoBehaviour
 {
@@ -164,6 +166,9 @@ public class NPCController : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            LoadScene();
         }
 
         // Mettre à jour la barre de vie
@@ -193,5 +198,10 @@ public class NPCController : MonoBehaviour
                 player.TakeDamage(damage);
             }
         }
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(3);
     }
 }
