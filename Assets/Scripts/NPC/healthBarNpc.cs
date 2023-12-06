@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    private Camera mainCamera;
+    private Camera PlayerCamera;
 
     void Start()
     {
-        mainCamera = Camera.main;
+        PlayerCamera = Camera.main;
 
         // Vérifier si la caméra principale a été trouvée
-        if (mainCamera == null)
+        if (PlayerCamera == null)
         {
             Debug.LogError("La caméra principale n'a pas été trouvée. Assurez-vous d'avoir une caméra principale dans votre scène.");
         }
@@ -18,10 +18,10 @@ public class FollowCamera : MonoBehaviour
     void Update()
     {
         // Vérifier si la caméra principale est définie
-        if (mainCamera != null)
+        if (PlayerCamera != null)
         {
             // Faire en sorte que le Slider soit toujours face à la caméra
-            transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
+            transform.LookAt(transform.position + PlayerCamera.transform.rotation * Vector3.forward, PlayerCamera.transform.rotation * Vector3.up);
         }
     }
 }
