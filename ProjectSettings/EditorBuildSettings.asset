@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start_Scene.unity
+    guid: afe4427cc748c074ea36da547bbf102a
+  - enabled: 1
+    path: Assets/MinimalistBedroom/Scenes/TheMinmalist_Mian.unity
+    guid: 42fa4072cf98a9b4aaa9b41fad4307c1
+  - enabled: 1
+    path: Assets/Scenes/Death_Scene 1.unity
+    guid: b900dfcda0efc7546a29ff23000f8e8d
+  - enabled: 1
+    path: Assets/Scenes/End_Scene 1.unity
+    guid: a44a990724863394ebc1b4ecc18e8692
   m_configObjects: {}
