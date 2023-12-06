@@ -26,6 +26,7 @@ public class NPCController : MonoBehaviour
     private Transform playerTransform;
 
     public Slider healthSlider; // Référence au Slider dans l'interface utilisateur Unity
+    public float damage = 20f;
 
     void Start()
     {
@@ -108,9 +109,26 @@ public class NPCController : MonoBehaviour
 
     void MoveWithObstacleAvoidance()
     {
-        Vector3 direction = targetPosition - transform.position;
-        transform.Translate(direction.normalized * moveSpeed * Time.deltaTime, Space.World);
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        float distance = Vector3.Distance(transform.position, targetPosition);
 
+        // Lance un rayon devant l'ennemi pour détecter les obstacles
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, direction, out hit, distance))
+        {
+            // Vérifie si le rayon a frappé un mur
+            if (hit.collider.CompareTag("Wall")) // Assurez-vous que les murs ont le tag "Wall"
+            {
+                Debug.Log("Mur détecté, ajustement du chemin");
+                // Ajustez targetPosition ou changez la direction de l'ennemi ici
+                // Par exemple, vous pouvez appeler SetRandomDestination pour changer de cible
+                SetRandomDestination();
+                return;
+            }
+        }
+
+        // Déplacement vers la position cible si aucun obstacle n'est détecté
+        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 180f * Time.deltaTime);
     }
@@ -139,7 +157,7 @@ public class NPCController : MonoBehaviour
         }
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
@@ -155,5 +173,25 @@ public class NPCController : MonoBehaviour
     void UpdateHealthUI()
     {
         healthSlider.value = currentHealth;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision");
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // Détecter si l'objet avec lequel le boss entre en collision est le joueur
+        if (other.CompareTag("Player"))
+        {
+            PlayerMotor player = other.GetComponent<PlayerMotor>();
+            if (player != null)
+            {
+                Debug.Log("Attack player");
+                // Appeler une méthode sur le script du joueur pour lui infliger des dégâts
+                player.TakeDamage(damage);
+            }
+        }
     }
 }

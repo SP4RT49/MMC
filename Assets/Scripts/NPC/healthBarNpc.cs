@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    private Camera PlayerCamera;
+    public Camera PlayerCamera;
 
     void Start()
     {
-        PlayerCamera = Camera.main;
-
         // Vérifier si la caméra principale a été trouvée
         if (PlayerCamera == null)
         {

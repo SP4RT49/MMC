@@ -3,6 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 20f; // Vitesse de la balle
+    public float damage = 10f;
     public Rigidbody rb; // Référence au Rigidbody de la balle
 
     void Start()
@@ -25,6 +26,19 @@ public class Bullet : MonoBehaviour
             Destroy(collision.gameObject);
             // Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+
+            Debug.Log("touch boss");
+            NPCController enemy = collision.collider.GetComponent<NPCController>();
+            if (enemy != null)
+            {
+                // Infliger des dégâts à l'ennemi
+                enemy.TakeDamage(damage);
+            }
+        }
+
         Debug.Log("destroy");
         // Logic de ce qui se passe lors d'une collision
         Destroy(gameObject); // Détruit la balle après collision

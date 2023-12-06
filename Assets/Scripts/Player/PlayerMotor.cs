@@ -17,6 +17,7 @@ public class PlayerMotor : MonoBehaviour
     public float speed;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
+    public float health = 100f;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,5 +93,26 @@ public class PlayerMotor : MonoBehaviour
         {
             speed = walkSpeed;
         }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        Debug.Log("Player take a damage" + amount);
+
+        if (health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        walkSpeed = 0f;
+        sprintSpeed = 0f;
+        crouchSpeed = 0f;
+        speed = 0f;
+        // Logique de mort du joueur (par exemple, jouer une animation, terminer le jeu, etc.)
+        Debug.Log("Le joueur est mort");
     }
 }
