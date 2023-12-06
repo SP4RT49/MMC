@@ -5,8 +5,10 @@ using UnityEngine;
 public class Keypad : Interactable
 {
     [SerializeField]
-    private GameObject door;
-    private bool doorOpen;
+    public GameObject boss;
+    public Transform spawnPoint;
+
+    private GameObject currentBoss;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,10 @@ public class Keypad : Interactable
 
     protected override void Interact()
     {
-        doorOpen = !doorOpen;
-        door.GetComponent<Animator>().SetBool("IsOpen", doorOpen);
+
+        if (currentBoss == null)
+        {
+            currentBoss = Instantiate(boss, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 }
