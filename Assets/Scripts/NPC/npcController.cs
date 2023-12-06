@@ -65,7 +65,7 @@ public class NPCController : MonoBehaviour
         float distanceToPlayer = directionToPlayer.magnitude;
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
-        if (angleToPlayer < visionAngle && (distanceToPlayer < maxVisionDistance || distanceToPlayer < followPlayerDistance))
+        if (angleToPlayer < visionAngle && distanceToPlayer < maxVisionDistance || distanceToPlayer < followPlayerDistance)
         {
             targetPosition = playerTransform.position;
             isPaused = false;
